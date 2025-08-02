@@ -53,3 +53,7 @@ def test_multiple_single_char_delimiters():
 
 def test_multiple_multi_char_delimiters():
     assert calc.Add("//[***][##][@@]\n1***2##3@@4") == 10
+
+def test_multiple_multi_char_delimiters_with_overlap():
+    assert calc.Add("//[***][%%][@@@]\n1***2%%3@@@4") == 10
+    assert calc.Add("//[&&][!!!]\n10&&20!!!30") == 60
