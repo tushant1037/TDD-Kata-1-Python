@@ -12,4 +12,10 @@ class StringCalculator:
             delimiter_pattern = re.escape(custom_delimiter)
 
         parts = re.split(delimiter_pattern, numbers)
-        return sum(int(part) for part in parts if part)
+        nums = [int(part) for part in parts if part]
+
+        negatives = [n for n in nums if n < 0]
+        if negatives:
+            raise ValueError(f"negatives not allowed: {', '.join(map(str, negatives))}")
+
+        return sum(nums)

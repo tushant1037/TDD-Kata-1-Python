@@ -29,3 +29,11 @@ def test_custom_delimiter_pipe():
 
 def test_custom_delimiter_works_with_single_number():
     assert calc.Add("//.\n9") == 9
+
+def test_negative_number_raises_exception():
+    with pytest.raises(ValueError, match="negatives not allowed: -1"):
+        calc.Add("1,-1")
+
+def test_multiple_negatives_raise_exception_with_all_listed():
+    with pytest.raises(ValueError, match="negatives not allowed: -1, -4"):
+        calc.Add("1,-1,2,-4,5")
