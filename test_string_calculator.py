@@ -37,3 +37,8 @@ def test_negative_number_raises_exception():
 def test_multiple_negatives_raise_exception_with_all_listed():
     with pytest.raises(ValueError, match="negatives not allowed: -1, -4"):
         calc.Add("1,-1,2,-4,5")
+
+def test_numbers_greater_than_1000_are_ignored():
+    assert calc.Add("2,1001") == 2
+    assert calc.Add("1000,1001,1002,3") == 1003
+    assert calc.Add("//;\n1001;1002;1") == 1
