@@ -47,3 +47,9 @@ def test_custom_delimiter_of_any_length():
     assert calc.Add("//[***]\n1***2***3") == 6
     assert calc.Add("//[abc]\n4abc5abc6") == 15
     assert calc.Add("//[--]\n10--20--30") == 60
+
+def test_multiple_single_char_delimiters():
+    assert calc.Add("//[*][%]\n1*2%3") == 6
+
+def test_multiple_multi_char_delimiters():
+    assert calc.Add("//[***][##][@@]\n1***2##3@@4") == 10

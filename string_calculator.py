@@ -9,9 +9,10 @@ class StringCalculator:
         if numbers.startswith("//"):
             delimiter_section, numbers = numbers.split('\n', 1)
 
-            if delimiter_section.startswith("//[") and delimiter_section.endswith("]"):
-                delimiter = delimiter_section[3:-1]
-                delimiter_pattern = re.escape(delimiter)
+            custom_delimiters = re.findall(r"\[(.*?)\]", delimiter_section)
+            if custom_delimiters:
+                escaped = [re.escape(d) for d in custom_delimiters]
+                delimiter_pattern = '|'.join(escaped)
             else:
                 delimiter = delimiter_section[2:]
                 delimiter_pattern = re.escape(delimiter)
