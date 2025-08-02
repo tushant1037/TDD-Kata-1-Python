@@ -8,8 +8,13 @@ class StringCalculator:
 
         if numbers.startswith("//"):
             delimiter_section, numbers = numbers.split('\n', 1)
-            custom_delimiter = delimiter_section[2:]
-            delimiter_pattern = re.escape(custom_delimiter)
+
+            if delimiter_section.startswith("//[") and delimiter_section.endswith("]"):
+                delimiter = delimiter_section[3:-1]
+                delimiter_pattern = re.escape(delimiter)
+            else:
+                delimiter = delimiter_section[2:]
+                delimiter_pattern = re.escape(delimiter)
 
         parts = re.split(delimiter_pattern, numbers)
         nums = [int(part) for part in parts if part]

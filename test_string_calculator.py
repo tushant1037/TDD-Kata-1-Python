@@ -42,3 +42,8 @@ def test_numbers_greater_than_1000_are_ignored():
     assert calc.Add("2,1001") == 2
     assert calc.Add("1000,1001,1002,3") == 1003
     assert calc.Add("//;\n1001;1002;1") == 1
+
+def test_custom_delimiter_of_any_length():
+    assert calc.Add("//[***]\n1***2***3") == 6
+    assert calc.Add("//[abc]\n4abc5abc6") == 15
+    assert calc.Add("//[--]\n10--20--30") == 60
