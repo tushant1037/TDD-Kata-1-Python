@@ -20,3 +20,12 @@ def test_newline_and_commas_as_delimiters():
     assert calc.Add("1\n2,3") == 6
     assert calc.Add("4\n5\n6") == 15
     assert calc.Add("7,8\n9") == 24
+
+def test_custom_delimiter_semicolon():
+    assert calc.Add("//;\n1;2") == 3
+
+def test_custom_delimiter_pipe():
+    assert calc.Add("//|\n4|5|6") == 15
+
+def test_custom_delimiter_works_with_single_number():
+    assert calc.Add("//.\n9") == 9
